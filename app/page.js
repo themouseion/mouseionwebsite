@@ -6,22 +6,21 @@ export default function Home() {
     <main className={styles.main}>
       <div className={styles.description}>
         <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.js</code>
+          Mouseion - &nbsp;
+          <code className={styles.code}>embedding the world's information</code>
         </p>
         <div>
           <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+            href="https://themouseion.eth.limo"
             target="_blank"
             rel="noopener noreferrer"
           >
-            By{' '}
             <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
+              src="/Mouseion.svg"
+              alt="Mouseion Logo"
               className={styles.vercelLogo}
               width={100}
-              height={24}
+              height={100}
               priority
             />
           </a>
@@ -29,30 +28,36 @@ export default function Home() {
       </div>
 
       <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
+           <h2>
+            A decentralized data set for the good of humanity
+          </h2>
+          </div>
+
+<div>
+<Image
+          src="/Alexandria.svg"
+          alt="Alexandria library"
+          width={200}
+          height={200}
           priority
         />
-      </div>
+
+</div>
 
       <div className={styles.grid}>
         <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+          href="mailto:alexcarrabre@gmail.com"
           className={styles.card}
           target="_blank"
           rel="noopener noreferrer"
         >
           <h2>
-            Docs <span>-&gt;</span>
+            Get in touch <span>-&gt;</span>
           </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
+          <p>Wanting to contribute, support or get involved in another capacity - reach out.</p>
         </a>
 
-        <a
+        {/* <a
           href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
           className={styles.card}
           target="_blank"
@@ -63,6 +68,7 @@ export default function Home() {
           </h2>
           <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
         </a>
+        
 
         <a
           href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
@@ -88,7 +94,7 @@ export default function Home() {
           <p>
             Instantly deploy your Next.js site to a shareable URL with Vercel.
           </p>
-        </a>
+        </a> */}
       </div>
     </main>
   )
