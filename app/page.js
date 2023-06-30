@@ -28,13 +28,13 @@ export default function Home() {
       </div>
 
       <div className={styles.center}>
-           <h2>
-           Once a piece of information is embedded, the creativity starts.&nbsp;
-          </h2>
-          </div>
+        <h2>
+          Once a piece of information is embedded, the creativity starts.&nbsp;
+        </h2>
+      </div>
 
-<div>
-<Image
+      <div>
+        <Image
           src="/Alexandria.svg"
           alt="Alexandria library"
           width={200}
@@ -42,7 +42,7 @@ export default function Home() {
           priority
         />
 
-</div>
+      </div>
 
       <div className={styles.grid}>
         <a
@@ -54,7 +54,7 @@ export default function Home() {
           <h2>
             Get in touch <span>-&gt;</span>
           </h2>
-          <p>Wanting to contribute, support or get involved in another capacity - reach out to us.</p>
+          <p>Wanting to contribute, support or get involved in another capacity - reach out.</p>
         </a>
 
         {/* <a
