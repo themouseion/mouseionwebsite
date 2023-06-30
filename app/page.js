@@ -7,7 +7,7 @@ export default function Home() {
       <div className={styles.description}>
         <p>
           Mouseion - &nbsp;
-          <code className={styles.code}>embedding the world's information</code>
+          <code className={styles.code}>embedding the worlds information</code>
         </p>
         <div>
           <a
@@ -29,7 +29,7 @@ export default function Home() {
 
       <div className={styles.center}>
            <h2>
-            A decentralized data set for the good of humanity
+           Once a piece of information is embedded, the creativity starts.
           </h2>
           </div>
 
