@@ -6,7 +6,7 @@ export default function Home() {
     <main className={styles.main}>
       <div className={styles.description}>
         <p>
-          Mouseion - &nbsp;
+          Mouseion -&nbsp;
           <code className={styles.code}>embedding the worlds information</code>
         </p>
         <div>
@@ -29,7 +29,7 @@ export default function Home() {
 
       <div className={styles.center}>
            <h2>
-           Once a piece of information is embedded, the creativity starts.
+           Once a piece of information is embedded, the creativity starts.&nbsp;
           </h2>
           </div>
 
