@@ -54,7 +54,7 @@ export default function Home() {
           <h2>
             Get in touch <span>-&gt;</span>
           </h2>
-          <p>Wanting to contribute, support or get involved in another capacity - reach out.</p>
+          <p>Wanting to contribute, support or get involved in another capacity - reach out to us.</p>
         </a>
 
         {/* <a
