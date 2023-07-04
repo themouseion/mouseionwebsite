@@ -46,7 +46,7 @@ export default function Home() {
 
       <div className={styles.grid}>
         <a
-          href="mailto:alexcarrabre@gmail.com"
+          href="mailto:carrabre@mouseionlabs.com"
           className={styles.card}
           target="_blank"
           rel="noopener noreferrer"
