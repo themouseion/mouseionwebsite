@@ -1,8 +1,7 @@
 
 import React from 'react';
 import styles from './Embeddings.module.css';
-import Link from 'next/link';
-import Image from 'next/image'
+
 
 const Embeddings = () => {
     return (
