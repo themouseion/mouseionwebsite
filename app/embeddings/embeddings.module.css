@@ -1,0 +1,43 @@
+/* Embeddings.module.css */
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+.table {
+    border-collapse: collapse;
+    margin: 1em;
+    width: 60%;  /* Adjust as needed */
+    overflow: hidden;
+    border: 1px solid #999999;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.table th,
+.table td {
+    padding: 0.5em;
+    border: 1px solid #999999;
+}
+
+.table th {
+    background-color: #e3e3e3;
+}
+
+.table tr:hover {
+    background-color: #f3f3f3;
+}
+
+.table a {
+    color: #000; /* Initial color */
+    transition: color 0.3s ease; /* Transition effect */
+}
+
+.table a:hover {
+    color: #0099ff; /* Color on hover */
+}
