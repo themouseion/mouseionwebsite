@@ -1,6 +1,6 @@
 
 import React from 'react';
-import styles from './Embeddings.module.css';
+import styles from './Embeddings.module.css?module';
 
 
 const Embeddings = () => {
