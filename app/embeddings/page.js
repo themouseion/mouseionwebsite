@@ -28,7 +28,7 @@ const Embeddings = () => {
                         <td>10.31 MB</td>
                         <td>sentence-transformers/all-MiniLM-L6-v2</td>
                         <td>
-                            <a href="mouseionlabs.com/3bd9e981-1e71-4573-a2ad-b9e8e876f3ef-bucket/WikiEmbeddings.npy" download>Download</a>
+                            <a href="https://storage.fleek-internal.com/3bd9e981-1e71-4573-a2ad-b9e8e876f3ef-bucket/WikiEmbeddings.npy" download>Download</a>
                         </td>
                     </tr>
                     <tr>

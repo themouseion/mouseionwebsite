@@ -59,7 +59,7 @@ export default function Home() {
         </a>
 
         <Link
-          href="embeddings"
+          href="/embeddings"
           className={styles.card}
         >
           <h2>
