@@ -7,8 +7,8 @@ export default function Home() {
     <main className={styles.main}>
       <div className={styles.description}>
         <p>
-          {/* Mouseion -&nbsp;
-          <code className={styles.code}>embedding the worlds information</code> */}
+          Mouseion -&nbsp;
+          <code className={styles.code}>embedding the worlds information</code>
         </p>
         <div>
           <a
