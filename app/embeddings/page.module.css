@@ -12,12 +12,21 @@
 
 .table {
     border-collapse: collapse;
-    margin: 1em;
+    margin-left: auto;
+    margin-right: auto;
     width: 90%;  /* Adjust as needed */
     overflow: auto;
     border: 1px solid #999999;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
     border-radius: 10px;  
+}
+
+.title {
+    margin-bottom: 50px;  /* Adjust the value to create the amount of space you want */
+}
+
+.tableContainer {
+    overflow-x: auto;
 }
 
 /* Styles for screens that are 768px or larger */
@@ -31,6 +40,27 @@
 .table td {
     padding: 0.5em;
     border: 1px solid #999999;
+    display: table-cell;
+}
+
+/* Styles for screens smaller than 768px */
+@media (max-width: 768px) {
+    .table th {
+        display: none;  /* Hide headers on small screens */
+    }
+
+    .table td {
+        display: block;  /* Display cells as blocks */
+        width: auto;
+        text-align: right;  /* Align text to the right */
+    }
+
+    .table td:before {
+        content: attr(data-label);  /* Insert the data label before the cell content */
+        float: left;
+        text-transform: uppercase;
+        font-weight: bold;
+    }
 }
 
 .table th {
@@ -49,3 +79,6 @@
 .table a:hover {
     color: #0099ff; /* Color on hover */
 }
+
+
+
