@@ -13,11 +13,18 @@
 .table {
     border-collapse: collapse;
     margin: 1em;
-    width: 60%;  /* Adjust as needed */
-    overflow: hidden;
+    width: 90%;  /* Adjust as needed */
+    overflow: auto;
     border: 1px solid #999999;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
     border-radius: 10px;  
+}
+
+/* Styles for screens that are 768px or larger */
+@media (min-width: 768px) {
+    .table {
+        width: 60%;
+    }
 }
 
 .table th,
@@ -31,7 +38,7 @@
 }
 
 .table tr:hover {
-    background-color: #f3f3f3;
+    background-color: #f3f3e3;
 }
 
 .table a {
