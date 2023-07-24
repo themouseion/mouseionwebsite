@@ -62,7 +62,7 @@ export default function Home() {
           
         }}
       />
-      <button type="submit" style={{ padding: '10px 20px', fontSize: '18px', borderRadius: '15px', background: '#323232', color: '#fff', border: '1px solid black' }}>Search</button>
+      <button type="submit" style={{ padding: '10px 20px', fontSize: '18px', borderRadius: '15px', background: '#323232', color: '#fff', border: '1px black' }}>Search</button>
     </form>
 
       {/* Display the search results */}
