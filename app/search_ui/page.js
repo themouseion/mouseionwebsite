@@ -4,6 +4,24 @@ import Image from 'next/image'
 import styles from './page.module.css'
 import { useState } from 'react';
 
+async function fetchWithRetry(url, options = {}, retries = 3, backoff = 300) {
+  const retryCodes = [408, 500, 502, 503, 504, 522, 524];
+  try {
+    const response = await fetch(url, options);
+    if (response.ok) return await response.json();
+    else if (retries > 0 && retryCodes.includes(response.status))
+      throw new Error("Retryable error");
+    else throw new Error("Non-retryable error");
+  } catch (err) {
+    if (retries > 0) {
+      await new Promise(res => setTimeout(res, backoff));
+      return fetchWithRetry(url, options, retries - 1, backoff * 2);
+    } else {
+      throw err;
+    }
+  }
+}
+
 export default function Home() {
 
   const [searchTerm, setSearchTerm] = useState('');
@@ -16,16 +34,22 @@ export default function Home() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setIsLoading(true);  // set loading state to true when search begins
-    
-    // Fetch results from your API
-    const response = await fetch(`/api/search?query=${encodeURIComponent(searchTerm)}`);
-    const data = await response.json();
+    setIsLoading(true);
 
-    // Store the results in state
-    setResults(data.results);
-    setIsLoading(false);  // set loading state to false when search is complete
+    const url = `https://search-server-e4kx722caq-wl.a.run.app/search?query=${encodeURIComponent(searchTerm)}`;
+    fetchWithRetry(url)
+      .then(data => {
+        setResults(data.results);
+        setIsLoading(false);
+      })
+      .catch(err => {
+        // Handle the error here. For simplicity, we'll just log it.
+        console.error(err);
+        setIsLoading(false);
+      });
   };
+
+
 
   return (
     <main className={styles.main} style={{ height: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
@@ -64,16 +88,6 @@ export default function Home() {
       />
       <button type="submit" style={{ padding: '10px 20px', fontSize: '18px', borderRadius: '15px', background: '#323232', color: '#fff', border: '1px black' }}>Search</button>
     </form>
-
-      {/* Display the search results */}
-      {/* <div style={{ marginTop: '20px', width: '80%', textAlign: 'center' }}>
-        {results.map((result, index) => (
-          <div key={index}>
-            <h2>{result.title}</h2>
-            <p>{result.description}</p>
-          </div>
-        ))}
-      </div> */}
     <div style={{ marginTop: '20px', width: '80%', textAlign: 'center' }}>
       {isLoading ? (
         <div style={{ padding: '20px', margin: '10px 0', borderRadius: '15px', border: '1px solid black' }}>
@@ -82,8 +96,8 @@ export default function Home() {
       ) : (
         results.map((result, index) => (
           <div key={index} style={{ background: '#444', padding: '20px', margin: '10px 0', borderRadius: '15px' }}>
-            <h2>{result.title}</h2>
-            <p>{result.description}</p>
+          <h2><a href={result.url}>{result.title}</a></h2>
+          <p>{result.sentence}</p>
           </div>
         ))
       )}
