@@ -91,13 +91,22 @@ export default function Home() {
     <div style={{ marginTop: '20px', width: '80%', textAlign: 'center' }}>
       {isLoading ? (
         <div style={{ padding: '20px', margin: '10px 0', borderRadius: '15px', border: '1px solid black' }}>
-          <h2>Under Construction 🚧🏗️</h2>
+          <h2>Thinking...</h2>
         </div>
       ) : (
         results.map((result, index) => (
-          <div key={index} style={{ background: '#444', padding: '20px', margin: '10px 0', borderRadius: '15px' }}>
-          <h2><a href={result.url}>{result.title}</a></h2>
-          <p>{result.sentence}</p>
+          <div key={index} style={{ 
+            background: '#444', 
+            padding: '10px', 
+            margin: '10px 0', 
+            borderRadius: '15px', 
+            maxHeight: '200px', 
+            overflow: 'auto'
+          }}>
+          <h3 style={{ margin: '0 0 10px 0', lineHeight: '1.2' }}>
+            <a href={result.url} style={{ color: '#fff' }}>{result.title}</a>
+          </h3>
+          <p style={{ margin: 0, fontSize: '14px' }}>{result.text}</p>
           </div>
         ))
       )}
