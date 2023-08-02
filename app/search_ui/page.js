@@ -23,10 +23,10 @@ async function fetchWithRetry(url, options = {}, retries = 3, backoff = 300) {
 }
 
 export default function Home() {
-
   const [searchTerm, setSearchTerm] = useState('');
   const [results, setResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [timeTaken, setTimeTaken] = useState(null); // Add this state for time taken
 
   const handleChange = (event) => {
     setSearchTerm(event.target.value);
@@ -35,15 +35,17 @@ export default function Home() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     setIsLoading(true);
+    const startTime = performance.now(); // Start time
 
     const url = `https://search-server-e4kx722caq-wl.a.run.app/search?query=${encodeURIComponent(searchTerm)}`;
     fetchWithRetry(url)
       .then(data => {
-        setResults(data.results);
+        const endTime = performance.now(); // End time
+        setTimeTaken((endTime - startTime).toFixed(2)); // Calculate time taken
+        setResults(data.results.slice(0, 10)); // Limit to 10 results
         setIsLoading(false);
       })
       .catch(err => {
-        // Handle the error here. For simplicity, we'll just log it.
         console.error(err);
         setIsLoading(false);
       });
@@ -89,6 +91,7 @@ export default function Home() {
       <button type="submit" style={{ padding: '10px 20px', fontSize: '18px', borderRadius: '15px', background: '#323232', color: '#fff', border: '1px black' }}>Search</button>
     </form>
     <div style={{ marginTop: '20px', width: '80%', textAlign: 'center' }}>
+    {timeTaken && <p>Time taken: {timeTaken} ms</p>} {/* Display the time taken */}
       {isLoading ? (
         <div style={{ padding: '20px', margin: '10px 0', borderRadius: '15px', border: '1px solid black' }}>
           <h2>Thinking...</h2>
