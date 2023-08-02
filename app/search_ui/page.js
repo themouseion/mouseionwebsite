@@ -42,7 +42,7 @@ export default function Home() {
       .then(data => {
         const endTime = performance.now(); // End time
         setTimeTaken((endTime - startTime).toFixed(2)); // Calculate time taken
-        setResults(data.results.slice(0, 10)); // Limit to 10 results
+        setResults(data.results.slice(0, 8)); // Limit to 10 results
         setIsLoading(false);
       })
       .catch(err => {
@@ -69,51 +69,56 @@ export default function Home() {
       </div>
 
       <h1>Search the Wikipedia Index</h1>
-      <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <input
-        type="text"
-        placeholder="Search..."
-        value={searchTerm}
-        onChange={handleChange}
-        style={{ 
-          margin: '20px 0', 
-          fontSize: '24px', 
-          padding: '15px', 
-          borderRadius: '20px', 
-          width: '90%', 
-          height: '50px', 
-          background: 'transparent', // make the background transparent
-          border: '1px solid black', // add a black border
-          color: '#323232' 
-          
-        }}
-      />
-      <button type="submit" style={{ padding: '10px 20px', fontSize: '18px', borderRadius: '15px', background: '#323232', color: '#fff', border: '1px black' }}>Search</button>
-    </form>
-    <div style={{ marginTop: '20px', width: '80%', textAlign: 'center' }}>
-    {timeTaken && <p>Time taken: {timeTaken} ms</p>} {/* Display the time taken */}
-      {isLoading ? (
-        <div style={{ padding: '20px', margin: '10px 0', borderRadius: '15px', border: '1px solid black' }}>
-          <h2>Thinking...</h2>
-        </div>
-      ) : (
-        results.map((result, index) => (
-          <div key={index} style={{ 
-            background: '#444', 
-            padding: '10px', 
-            margin: '10px 0', 
-            borderRadius: '15px', 
-            maxHeight: '200px', 
-            overflow: 'auto'
-          }}>
-          <h3 style={{ margin: '0 0 10px 0', lineHeight: '1.2' }}>
-            <a href={result.url} style={{ color: '#fff' }}>{result.title}</a>
-          </h3>
-          <p style={{ margin: 0, fontSize: '14px' }}>{result.text}</p>
+      <div style={{ width: '90%', maxHeight: '80vh', overflowY: 'auto' }}> {/* Scrollable container */}
+        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <input
+            type="text"
+            placeholder="Search..."
+            value={searchTerm}
+            onChange={handleChange}
+            style={{
+              margin: '20px 0',
+              fontSize: '24px',
+              padding: '15px',
+              borderRadius: '20px',
+              width: '90%',
+              height: '50px',
+              background: 'transparent', // make the background transparent
+              border: '1px solid black', // add a black border
+              color: '#323232'
+
+            }}
+          />
+          <button type="submit" style={{ padding: '10px 20px', fontSize: '18px', borderRadius: '15px', background: '#323232', color: '#fff', border: '1px black' }}>Search</button>
+        </form>
+        <div style={{ marginTop: '20px', width: '100%', display: 'flex', justifyContent: 'center' }}> {/* Centering container */}
+          <div style={{ width: '80%', textAlign: 'center' }}> {/* Inner container for results */}
+            {timeTaken && <p>Time taken: {timeTaken} ms</p>} {/* Display the time taken */}
+            {isLoading ? (
+              <div style={{ padding: '20px', margin: '10px 0', borderRadius: '15px', border: '1px solid black' }}>
+                <h2>Thinking...</h2>
+              </div>
+            ) : (
+              results.map((result, index) => (
+                <div key={index} style={{
+                  background: '#444',
+                  padding: '10px',
+                  margin: '10px 0',
+                  borderRadius: '15px',
+                  maxHeight: '200px',
+                  overflow: 'auto',
+                  justifyContent: 'center'
+                }}>
+                  <h3 style={{ margin: '0 0 10px 0', lineHeight: '1.2' }}>
+                    <a href={result.url} style={{ color: '#fff' }}>{result.title}</a>
+                  </h3>
+                  <p style={{ margin: 0, fontSize: '14px' }}>{result.text}</p>
+                </div>
+              ))
+            )}
           </div>
-        ))
-      )}
-    </div>
+        </div>
+      </div>
     </main>
   )
 }
