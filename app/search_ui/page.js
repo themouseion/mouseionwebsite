@@ -73,7 +73,7 @@ export default function Home() {
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <input
             type="text"
-            placeholder="Search..."
+            placeholder="Search... (this is beta, try 'anarchy', 'ASCII' or 'Altruism' "
             value={searchTerm}
             onChange={handleChange}
             style={{
