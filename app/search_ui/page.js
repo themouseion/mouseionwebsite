@@ -68,7 +68,7 @@ export default function Home() {
         </div>
       </div>
 
-      <h1>Search the Wikipedia Index</h1>
+      <h1 style={{ textAlign: 'center', color: '#323232'}}>Search the Wikipedia Index</h1>
       <div style={{ width: '90%', maxHeight: '80vh', overflowY: 'auto' }}> {/* Scrollable container */}
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <input
@@ -107,12 +107,12 @@ export default function Home() {
                   borderRadius: '15px',
                   maxHeight: '200px',
                   overflow: 'auto',
-                  justifyContent: 'center'
+                  justifyContent: 'center',
                 }}>
                   <h3 style={{ margin: '0 0 10px 0', lineHeight: '1.2' }}>
                     <a href={result.url} style={{ color: '#fff' }}>{result.title}</a>
                   </h3>
-                  <p style={{ margin: 0, fontSize: '14px' }}>{result.text}</p>
+                  <p style={{ margin: 0, fontSize: '14px', color: '#fff' }}>{result.text}</p>
                 </div>
               ))
             )}
