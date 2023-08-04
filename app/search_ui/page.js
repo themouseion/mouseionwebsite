@@ -25,8 +25,10 @@ async function fetchWithRetry(url, options = {}, retries = 3, backoff = 300) {
 export default function Home() {
   const [searchTerm, setSearchTerm] = useState('');
   const [results, setResults] = useState([]);
+  const [similarities, setSimilarities] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [timeTaken, setTimeTaken] = useState(null); // Add this state for time taken
+  const [loadingMessage, setLoadingMessage] = useState('Thinking...');
+  const [timeTaken, setTimeTaken] = useState(null);
 
   const handleChange = (event) => {
     setSearchTerm(event.target.value);
@@ -35,14 +37,26 @@ export default function Home() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     setIsLoading(true);
-    const startTime = performance.now(); // Start time
+    setLoadingMessage('Thinking...');
+    const startTime = performance.now();
 
-    const url = `https://search-server-e4kx722caq-wl.a.run.app/search?query=${encodeURIComponent(searchTerm)}`;
+    // Update the loading message after 3 seconds
+    setTimeout(() => {
+      setLoadingMessage('Thinking harder...');
+    }, 3000);
+
+    // Update the loading message after 7 seconds
+    setTimeout(() => {
+      setLoadingMessage('Please refresh page and search again');
+    }, 7000);
+
+    const url = `https://search-server-e4kx722caq-wl.a.run.app//search?query=${encodeURIComponent(searchTerm)}`;
     fetchWithRetry(url)
       .then(data => {
-        const endTime = performance.now(); // End time
-        setTimeTaken((endTime - startTime).toFixed(2)); // Calculate time taken
-        setResults(data.results.slice(0, 8)); // Limit to 10 results
+        const endTime = performance.now();
+        setTimeTaken((endTime - startTime).toFixed(2));
+        setResults(data.results.slice(0, 8));
+        setSimilarities(data.similarities.slice(0, 8));
         setIsLoading(false);
       })
       .catch(err => {
@@ -68,7 +82,7 @@ export default function Home() {
         </div>
       </div>
 
-      <h1 style={{ textAlign: 'center', color: '#323232'}}>Search the Wikipedia Index</h1>
+      <h1 style={{ textAlign: 'center', color: '#323232' }}>Search the Wikipedia Index</h1>
       <div style={{ width: '90%', maxHeight: '80vh', overflowY: 'auto' }}> {/* Scrollable container */}
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <input
@@ -96,7 +110,7 @@ export default function Home() {
             {timeTaken && <p>Time taken: {timeTaken} ms</p>} {/* Display the time taken */}
             {isLoading ? (
               <div style={{ padding: '20px', margin: '10px 0', borderRadius: '15px', border: '1px solid black' }}>
-                <h2>Thinking...</h2>
+                <h2>{loadingMessage}</h2>
               </div>
             ) : (
               results.map((result, index) => (
@@ -113,6 +127,7 @@ export default function Home() {
                     <a href={result.url} style={{ color: '#fff' }}>{result.title}</a>
                   </h3>
                   <p style={{ margin: 0, fontSize: '14px', color: '#fff' }}>{result.text}</p>
+                  <p style={{ fontSize: '12px', color: '#aaa' }}>Cos Simalarity: {similarities[index]}</p> {/* Display similarity */}
                 </div>
               ))
             )}
