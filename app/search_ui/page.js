@@ -50,7 +50,7 @@ export default function Home() {
       setLoadingMessage('Please refresh page and search again');
     }, 7000);
 
-    const url = `https://search-server-e4kx722caq-wl.a.run.app//search?query=${encodeURIComponent(searchTerm)}`;
+    const url = `https://search-server-e4kx722caq-wl.a.run.app/search?query=${encodeURIComponent(searchTerm)}`;
     fetchWithRetry(url)
       .then(data => {
         const endTime = performance.now();
@@ -87,7 +87,7 @@ export default function Home() {
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <input
             type="text"
-            placeholder="Search... (this is beta, try 'anarchy', 'ASCII' or 'Altruism' "
+            placeholder="Search... (In beta, try 'Alexander the Great', 'Altruism' etc... "
             value={searchTerm}
             onChange={handleChange}
             style={{
@@ -97,7 +97,7 @@ export default function Home() {
               borderRadius: '20px',
               width: '90%',
               height: '50px',
-              background: 'transparent', // make the background transparent
+              background: '#f5f2ee', // make the background transparent
               border: '1px solid black', // add a black border
               color: '#323232'
 
@@ -127,7 +127,7 @@ export default function Home() {
                     <a href={result.url} style={{ color: '#fff' }}>{result.title}</a>
                   </h3>
                   <p style={{ margin: 0, fontSize: '14px', color: '#fff' }}>{result.text}</p>
-                  <p style={{ fontSize: '12px', color: '#aaa' }}>Cos Simalarity: {similarities[index]}</p> {/* Display similarity */}
+                  {/* <p style={{ fontSize: '12px', color: '#aaa' }}>Cos Simalarity: {similarities[index]}</p> Display similarity */}
                 </div>
               ))
             )}
