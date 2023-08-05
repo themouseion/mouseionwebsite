@@ -25,7 +25,7 @@ async function fetchWithRetry(url, options = {}, retries = 3, backoff = 300) {
 export default function Home() {
   const [searchTerm, setSearchTerm] = useState('');
   const [results, setResults] = useState([]);
-  const [similarities, setSimilarities] = useState([]);
+  const [distances, setDistances] = useState([]); // Define distances state here
   const [isLoading, setIsLoading] = useState(false);
   const [loadingMessage, setLoadingMessage] = useState('Thinking...');
   const [timeTaken, setTimeTaken] = useState(null);
@@ -56,7 +56,8 @@ export default function Home() {
         const endTime = performance.now();
         setTimeTaken((endTime - startTime).toFixed(2));
         setResults(data.results.slice(0, 8));
-        setSimilarities(data.similarities.slice(0, 8));
+        // Save the Euclidean distances
+        setDistances(data.distances.slice(0, 8));
         setIsLoading(false);
       })
       .catch(err => {
@@ -65,7 +66,23 @@ export default function Home() {
       });
   };
 
-
+  const renderResults = () => results.map((result, index) => (
+    <div key={index} style={{
+      background: '#444',
+      padding: '10px',
+      margin: '10px 0',
+      borderRadius: '15px',
+      maxHeight: '200px',
+      overflow: 'auto',
+      justifyContent: 'center',
+    }}>
+      <h3 style={{ margin: '0 0 10px 0', lineHeight: '1.2' }}>
+        <a href={result.url} style={{ color: '#fff' }}>{result.title}</a>
+      </h3>
+      <p style={{ margin: 0, fontSize: '14px', color: '#fff' }}>{result.text}</p>
+      <p style={{ fontSize: '12px', color: '#aaa' }}>Euclidean Distance: {distances[index]}</p>
+    </div>
+  ));
 
   return (
     <main className={styles.main} style={{ height: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
@@ -112,25 +129,7 @@ export default function Home() {
               <div style={{ padding: '20px', margin: '10px 0', borderRadius: '15px', border: '1px solid black' }}>
                 <h2>{loadingMessage}</h2>
               </div>
-            ) : (
-              results.map((result, index) => (
-                <div key={index} style={{
-                  background: '#444',
-                  padding: '10px',
-                  margin: '10px 0',
-                  borderRadius: '15px',
-                  maxHeight: '200px',
-                  overflow: 'auto',
-                  justifyContent: 'center',
-                }}>
-                  <h3 style={{ margin: '0 0 10px 0', lineHeight: '1.2' }}>
-                    <a href={result.url} style={{ color: '#fff' }}>{result.title}</a>
-                  </h3>
-                  <p style={{ margin: 0, fontSize: '14px', color: '#fff' }}>{result.text}</p>
-                  {/* <p style={{ fontSize: '12px', color: '#aaa' }}>Cos Simalarity: {similarities[index]}</p> Display similarity */}
-                </div>
-              ))
-            )}
+            ) : renderResults()}
           </div>
         </div>
       </div>
