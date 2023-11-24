@@ -85,7 +85,9 @@ export default function Home() {
   ));
 
   return (
-    <main className={styles.main} style={{ height: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+    
+    <div style={{ position: 'relative' }}>
+      <main className={styles.main} style={{ height: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
       <div className={styles.description}>
         <div onClick={() => window.history.back()}>
           <Image
@@ -134,5 +136,23 @@ export default function Home() {
         </div>
       </div>
     </main>
+    <div style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        color: '#fff',
+        textAlign: 'center',
+      }}>
+        <h1>Under Construction 🚧</h1>
+        <button onClick={() => window.location.href = '/'} style={{ marginTop: '20px', padding: '10px 20px', fontSize: '18px', borderRadius: '15px', background: '#323232', color: '#fff', border: '1px solid #fff' }}>Go Back Home</button>
+      </div>
+    </div>
   )
 }
