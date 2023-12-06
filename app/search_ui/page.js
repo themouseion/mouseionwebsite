@@ -116,8 +116,8 @@ export default function Home() {
               borderRadius: '20px',
               width: '90%',
               height: '50px',
-              background: '#f5f2ee', // make the background transparent
-              border: '1px solid black', // add a black border
+              background: '#f5f2ee', 
+              border: '1px solid black',
               color: '#323232'
 
             }}
